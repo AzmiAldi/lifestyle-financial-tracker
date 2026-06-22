@@ -10,6 +10,7 @@ use App\Policies\SavingsGoalPolicy;
 use App\Policies\TransactionPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,5 +32,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Budget::class, BudgetPolicy::class);
         Gate::policy(SavingsGoal::class, SavingsGoalPolicy::class);
         Gate::policy(Transaction::class, TransactionPolicy::class);
+        URL::forceScheme('https');
     }
 }
