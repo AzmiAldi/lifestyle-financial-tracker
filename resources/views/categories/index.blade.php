@@ -60,8 +60,16 @@
             </x-ui.dashboard-widget>
 
             <x-ui.dashboard-widget title="Global Categories" description="Default labels available to every user for fast setup.">
-                <div class="space-y-2 px-5 pb-5 pt-4 md:px-6">
-                    @foreach ($globalCategories as $category)
+                @if ($globalCategories->isEmpty())
+                    <div class="px-5 pb-5 pt-4 md:px-6">
+                        <x-ui.empty-state
+                            title="Global categories are not seeded yet."
+                            description="Run the default seeder to bootstrap shared income and expense categories."
+                        />
+                    </div>
+                @else
+                    <div class="space-y-2 px-5 pb-5 pt-4 md:px-6">
+                        @foreach ($globalCategories as $category)
                         <div class="flex items-center justify-between rounded-xl px-3 py-3 transition duration-200 hover:bg-white/[0.04]">
                             <div class="flex items-center gap-3">
                                 <div class="h-9 w-9 rounded-full border border-white/10 bg-white/[0.05]"></div>
@@ -72,8 +80,9 @@
                             </div>
                             <span class="rounded-full border border-emerald-300/15 bg-emerald-300/[0.08] px-3 py-1 text-xs font-medium text-emerald-200">Global</span>
                         </div>
-                    @endforeach
-                </div>
+                        @endforeach
+                    </div>
+                @endif
             </x-ui.dashboard-widget>
         </div>
     </div>
